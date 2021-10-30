@@ -1,7 +1,7 @@
 import React from "react";
 
 import PeopleReviews from "./components/people-reviews/people-reviews.component";
-// import Buttons from "./components/buttons/buttons.component";
+import Buttons from "./components/buttons/buttons.component";
 
 import people from "./data";
 
@@ -16,8 +16,23 @@ export default class App extends React.Component {
     };
   }
 
-  rightClickHandler = () => {};
-  leftClickHandler = () => {};
+  rightClickHandler = () => {
+    const currentIndex = this.state.index;
+    if (currentIndex === people.length - 1) {
+      this.setState({ index: 0 });
+      return;
+    }
+    this.setState({ index: currentIndex + 1 });
+  };
+
+  leftClickHandler = () => {
+    const currentIndex = this.state.index;
+    if (currentIndex === 0) {
+      this.setState({ index: people.length - 1 });
+      return;
+    }
+    this.setState({ index: currentIndex - 1 });
+  };
 
   render() {
     return (
@@ -27,7 +42,10 @@ export default class App extends React.Component {
         </h1>
         <div className="content">
           <PeopleReviews people={people} index={this.state.index} />
-          {/* <Buttons /> */}
+          <Buttons
+            rightClickHandler={this.rightClickHandler}
+            leftClickHandler={this.leftClickHandler}
+          />
         </div>
       </div>
     );
