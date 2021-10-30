@@ -13,26 +13,43 @@ export default class App extends React.Component {
 
     this.state = {
       index: 0,
+      intervalId: 0,
     };
   }
 
+  checkNumber = (number) => {
+    if (number >= people.length) return 0;
+    if (number < 0) return people.length - 1;
+    return number;
+  };
+
+  resetTimer = () => {
+    clearInterval(this.state.intervalId);
+    this.autoSlider();
+  };
+
   rightClickHandler = () => {
-    const currentIndex = this.state.index;
-    if (currentIndex === people.length - 1) {
-      this.setState({ index: 0 });
-      return;
-    }
-    this.setState({ index: currentIndex + 1 });
+    this.resetTimer();
+    this.setState({ index: this.checkNumber(this.state.index + 1) });
   };
 
   leftClickHandler = () => {
-    const currentIndex = this.state.index;
-    if (currentIndex === 0) {
-      this.setState({ index: people.length - 1 });
-      return;
-    }
-    this.setState({ index: currentIndex - 1 });
+    this.resetTimer();
+    this.setState({ index: this.checkNumber(this.state.index - 1) });
   };
+
+  autoSlider = () => {
+    const slider = setInterval(
+      () => this.setState({ index: this.checkNumber(this.state.index + 1) }),
+      3000
+    );
+
+    this.setState({ intervalId: slider });
+  };
+
+  componentDidMount() {
+    this.autoSlider();
+  }
 
   render() {
     return (
