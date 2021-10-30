@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import PeopleReviews from "./components/people-reviews/people-reviews.component";
+// import Buttons from "./components/buttons/buttons.component";
+
+import people from "./data";
+
+import "./App.css";
+
+export default class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      index: 0,
+    };
+  }
+
+  rightClickHandler = () => {};
+  leftClickHandler = () => {};
+
+  render() {
+    return (
+      <div className="app">
+        <h1 className="heading-primary">
+          <span>/</span>Reviews
+        </h1>
+        <div className="content">
+          <PeopleReviews people={people} index={this.state.index} />
+          {/* <Buttons /> */}
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;

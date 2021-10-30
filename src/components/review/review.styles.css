@@ -1,0 +1,57 @@
+.review {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+}
+
+.review-image {
+  width: 13rem;
+  height: 13rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--clr-grey-8);
+  box-shadow: var(--dark-shadow);
+  margin-bottom: 1.5rem;
+}
+
+.review-name {
+  color: var(--clr-primary-4);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.review-title {
+  color: var(--clr-grey-2);
+  text-transform: capitalize;
+  margin-bottom: 3rem;
+}
+
+.review-quote {
+  text-align: center;
+  width: 90%;
+}
+
+.quote {
+  width: 4rem;
+  height: 4rem;
+  fill: var(--clr-primary-5);
+  margin-top: 2rem;
+}
+
+.active-review {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.prev-last-review {
+  transform: translateX(-100%);
+}
+
+.next-review {
+  transform: translateX(100%);
+}

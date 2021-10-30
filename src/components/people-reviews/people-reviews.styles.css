@@ -1,0 +1,6 @@
+.people {
+  height: 50rem;
+  width: 80vw;
+  max-width: 80rem;
+  overflow: hidden;
+}
