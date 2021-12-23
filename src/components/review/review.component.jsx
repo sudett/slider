@@ -1,20 +1,25 @@
 import React from "react";
 
-import { FaQuoteRight } from "react-icons/fa";
-
-import "./review.styles.css";
+import {
+  ReviewContainer,
+  ReviewImage,
+  ReviewName,
+  ReviewTitle,
+  ReviewQuote,
+  QuoteRight,
+} from "./review.styles";
 
 const Review = ({ person, position }) => {
   const { name, image, title, quote } = person;
 
   return (
-    <div className={`${position} review`}>
-      <img className="review-image" src={image} alt={name} />
-      <h4 className="review-name">{name}</h4>
-      <span className="review-title">{title}</span>
-      <p className="review-quote">{quote}</p>
-      <FaQuoteRight className="quote" />
-    </div>
+    <ReviewContainer position={position}>
+      <ReviewImage src={image} alt={name} />
+      <ReviewName>{name}</ReviewName>
+      <ReviewTitle>{title}</ReviewTitle>
+      <ReviewQuote>{quote}</ReviewQuote>
+      <QuoteRight />
+    </ReviewContainer>
   );
 };
 

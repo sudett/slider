@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import PeopleReviews from "./components/people-reviews/people-reviews.component";
 import Buttons from "./components/buttons/buttons.component";
@@ -7,64 +7,37 @@ import people from "./data";
 
 import "./App.css";
 
-export default class App extends React.Component {
-  constructor() {
-    super();
+const App = () => {
+  const [index, setIndex] = useState(0);
 
-    this.state = {
-      index: 0,
-      intervalId: 0,
-    };
-  }
+  useEffect(() => {
+    const last = people.length - 1;
+    if (index < 0) setIndex(last);
+    if (index > last) setIndex(0);
 
-  checkNumber = (number) => {
-    if (number >= people.length) return 0;
-    if (number < 0) return people.length - 1;
-    return number;
-  };
+    //Autoslider
+    const intervalId = setInterval(() => setIndex(index + 1), 3000);
+    return () => clearInterval(intervalId);
+  }, [index]);
 
-  resetTimer = () => {
-    clearInterval(this.state.intervalId);
-    this.autoSlider();
-  };
+  const rightClickHandler = () => setIndex(index + 1);
 
-  rightClickHandler = () => {
-    this.resetTimer();
-    this.setState({ index: this.checkNumber(this.state.index + 1) });
-  };
+  const leftClickHandler = () => setIndex(index - 1);
 
-  leftClickHandler = () => {
-    this.resetTimer();
-    this.setState({ index: this.checkNumber(this.state.index - 1) });
-  };
-
-  autoSlider = () => {
-    const slider = setInterval(
-      () => this.setState({ index: this.checkNumber(this.state.index + 1) }),
-      3000
-    );
-
-    this.setState({ intervalId: slider });
-  };
-
-  componentDidMount() {
-    this.autoSlider();
-  }
-
-  render() {
-    return (
-      <div className="app">
-        <h1 className="heading-primary">
-          <span>/</span>Reviews
-        </h1>
-        <div className="content">
-          <PeopleReviews people={people} index={this.state.index} />
-          <Buttons
-            rightClickHandler={this.rightClickHandler}
-            leftClickHandler={this.leftClickHandler}
-          />
-        </div>
+  return (
+    <div className="app">
+      <h1 className="heading-primary">
+        <span>/</span>Reviews
+      </h1>
+      <div className="content">
+        <PeopleReviews people={people} index={index} />
+        <Buttons
+          rightClickHandler={rightClickHandler}
+          leftClickHandler={leftClickHandler}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default App;

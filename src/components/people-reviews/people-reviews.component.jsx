@@ -2,10 +2,10 @@ import React from "react";
 
 import Review from "../review/review.component";
 
-import "./people-reviews.styles.css";
+import { PeopleContainer } from "./people-reviews.styles";
 
 const PeopleReviews = ({ people, index }) => (
-  <div className="people">
+  <PeopleContainer>
     {people.map((person, personIndex) => {
       let position = "next-review";
       if (personIndex === index) {
@@ -18,9 +18,9 @@ const PeopleReviews = ({ people, index }) => (
       ) {
         position = "prev-last-review";
       }
-      return <Review position={position} key={person.id} person={person} />;
+      return <Review key={person.id} position={position} person={person} />;
     })}
-  </div>
+  </PeopleContainer>
 );
 
 export default PeopleReviews;

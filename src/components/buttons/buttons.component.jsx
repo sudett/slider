@@ -1,19 +1,21 @@
 import React from "react";
 
-import { BiChevronRight } from "react-icons/bi";
-import { BiChevronLeft } from "react-icons/bi";
-
-import "./buttons.styles.css";
+import {
+  ButtonLeft,
+  ButtonRight,
+  ChevronLeft,
+  ChevronRight,
+} from "./button.styles";
 
 const Buttons = ({ rightClickHandler, leftClickHandler }) => (
-  <div>
-    <button className="btn btn-left" onClick={leftClickHandler}>
-      <BiChevronLeft className="chevron " />
-    </button>
-    <button className="btn btn-right" onClick={rightClickHandler}>
-      <BiChevronRight className="chevron " />
-    </button>
-  </div>
+  <>
+    <ButtonLeft onClick={leftClickHandler}>
+      <ChevronLeft />
+    </ButtonLeft>
+    <ButtonRight onClick={rightClickHandler}>
+      <ChevronRight />
+    </ButtonRight>
+  </>
 );
 
 export default Buttons;
