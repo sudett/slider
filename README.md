@@ -1,3 +1,5 @@
+In this app i've learned how to make slider, the most challengin part was implementing auto slide feature. I found the i should turn off and on again whenever the user clciks the buttons, otherwise there would be a mess in moveing the reviews. because timer and clicking the buttons both change the state and move the slides at the same time;
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
